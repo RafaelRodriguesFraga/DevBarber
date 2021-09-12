@@ -54,10 +54,8 @@ const Search = () => {
     let newFilteredList = [] as BarberProps[];
 
     newFilteredList = barberList.filter(barber => {
-      if (text === '') {
+      if (text === '' || barber.name.includes(text)) {
         return barber;
-      } else {
-        return barber.name.includes(text);
       }
     });
 
@@ -89,17 +87,14 @@ const Search = () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        {!loading && filteredList.length > 0 ? (
+        {loading && <LoadingIcon size="large" color="#fff" />}
+        {!loading && filteredList.length > 0 && (
           <>
             {filteredList.map((barber, key) => (
               <BarberItem key={key} user={barber} />
             ))}
           </>
-        ) : (
-          <LoadingIcon size="large" color={Colors.white} />
         )}
-
-       
       </ScrollViewContainer>
     </Container>
   );
