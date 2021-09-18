@@ -1,5 +1,4 @@
 import React, {useContext, useState} from 'react';
-import {View, Text, Alert} from 'react-native';
 import {
   Container,
   InputContainer,
@@ -15,9 +14,10 @@ import {useNavigation} from '@react-navigation/native';
 import {login} from '../../services/auth.service';
 import {Auth} from '../../models/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { UserContext } from '../../contexts/User/userContext';
-import { UserTypes } from '../../contexts/User/userTypes';
-import { Colors } from '../../shared/colors';
+import {UserContext} from '../../contexts/User/userContext';
+import {UserTypes} from '../../contexts/User/userTypes';
+import {Colors} from '../../shared/colors';
+import { storeUserProperties } from '../../shared/storageFunctions';
 
 const Login = () => {
   const {dispatch} = useContext(UserContext);
@@ -33,29 +33,29 @@ const Login = () => {
   const handleAuthentication = async () => {
     const auth: Auth = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
 
     if (email != '' && password != '') {
       const response = await login(auth);
+      const {token} = response.data;
+      const {avatar, name, email} = response.data.data;
+      if (token) {
+        await AsyncStorage.setItem('token', token);
 
-      const {token, avatar} = response.data; 
+        dispatch({
+          type: UserTypes.SET_AVATAR,
+          payload: {
+            avatar,
+          },
+        });
 
-      if(token) {
-          await AsyncStorage.setItem('token', token); 
-          
-          dispatch({
-            type: UserTypes.SET_AVATAR,
-            payload: {
-              avatar,
-            },
-          });
+        storeUserProperties(name, email);    
 
-          navigation.reset({routes: [{name: 'TabRoutes'}]});
-
-      }else {
-        alert("Email ou senha inválidos");
-      }      
+        navigation.reset({routes: [{name: 'TabRoutes'}]});
+      } else {
+        alert('Email ou senha inválidos');
+      }
     } else {
       alert('Todos os campos são obrigatórios');
     }
@@ -92,7 +92,11 @@ const Login = () => {
           secureTextEntry
         />
 
-        <InputButton buttonText="LOGIN" activeOpacity={0.7} onPress={handleAuthentication} />
+        <InputButton
+          buttonText="LOGIN"
+          activeOpacity={0.7}
+          onPress={handleAuthentication}
+        />
       </InputContainer>
 
       <SignInMessageButton activeOpacity={0.5} onPress={handleNavigateToSignUp}>
