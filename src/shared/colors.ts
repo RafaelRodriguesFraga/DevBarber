@@ -12,6 +12,7 @@ export const Colors = {
 
   gray1: '#737373',
   gray2: '#999999',
+  gray3: '#DEE0E3',
 
   red: '#FF0000'
 } as const;
