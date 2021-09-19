@@ -60,7 +60,7 @@ Ou caso prefira o npm:
 npm install
 ```
   
- Por fim, para rodar o projeto, exevute o comando:
+ Por fim, para rodar o projeto, execute o comando:
   
   ```bash
 yarn seu dispositivo
