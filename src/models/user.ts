@@ -8,9 +8,6 @@ export interface User {
   avatar: string;
   name: string;
   stars: number;
-  favorites: [];
-  appointments: [];
-
   photos: Photos[];
   services: Services[];
   testimonials: Testimonials[];
