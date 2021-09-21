@@ -1,31 +1,12 @@
-import React, {useState} from 'react';
-import {RefreshControl, Text, View} from 'react-native';
-import {
-  BackButton,
-  Container,
-  HeaderContainer,
-  HeaderText,
-  ScrollViewContainer,
-  AppointmentItem,
-  BarberAvatar,
-  BarberName,
-  BarberInfo,
-  ServiceInfo,
-  ServiceName,
-  ServicePrice,
-  AppointmentDateText,
-  AppointmentHourText,
-  AppointmentInfo,
-  AppointmentDateContainer,
-  AppointmentHourContainer,
-  LoadingIcon,
-} from './style';
-import {Images} from "../../shared/images";
+import React, {useState, useEffect} from 'react';
+import {RefreshControl} from 'react-native';
+import * as S from './styles';
+
+import {Images} from '../../shared/images';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import {BarberProps} from '../../models/props/barberProps';
 import {getBarbers} from '../../services/barber.service';
-import {useEffect} from 'react';
 
 const Appointments = () => {
   const navigation = useNavigation();
@@ -65,53 +46,53 @@ const Appointments = () => {
   };
 
   return (
-    <Container>
-      <HeaderContainer>
-        <BackButton onPress={handleBackButton}>
+    <S.Container>
+      <S.HeaderContainer>
+        <S.BackButton onPress={handleBackButton}>
           <Images.BackIcon width="44" height="44" fill={Colors.white} />
-        </BackButton>
+        </S.BackButton>
 
-        <HeaderText>Agendamentos</HeaderText>
-      </HeaderContainer>
+        <S.HeaderText>Agendamentos</S.HeaderText>
+      </S.HeaderContainer>
 
-      <ScrollViewContainer
+      <S.ScrollViewContainer
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        {loading && <LoadingIcon color="#fff" size="large" />}
+        {loading && <S.LoadingIcon color="#fff" size="large" />}
         {!loading && (
           <>
             {barberList.map((barber: BarberProps) => (
-              <AppointmentItem key={barber.id} activeOpacity={0.7}>
-                <BarberInfo>
-                  <BarberAvatar
+              <S.AppointmentItem key={barber.id} activeOpacity={0.7}>
+                <S.BarberInfo>
+                  <S.BarberAvatar
                     source={{
                       uri: barber.avatar,
                     }}
                   />
-                  <BarberName>{barber.name}</BarberName>
-                </BarberInfo>
+                  <S.BarberName>{barber.name}</S.BarberName>
+                </S.BarberInfo>
 
-                <ServiceInfo>
-                  <ServiceName>Corte Masculino</ServiceName>
-                  <ServicePrice>R$ 29,90</ServicePrice>
-                </ServiceInfo>
+                <S.ServiceInfo>
+                  <S.ServiceName>Corte Masculino</S.ServiceName>
+                  <S.ServicePrice>R$ 29,90</S.ServicePrice>
+                </S.ServiceInfo>
 
-                <AppointmentInfo>
-                  <AppointmentDateContainer>
-                    <AppointmentDateText>12/09/2021</AppointmentDateText>
-                  </AppointmentDateContainer>
+                <S.AppointmentInfo>
+                  <S.AppointmentDateContainer>
+                    <S.AppointmentDateText>12/09/2021</S.AppointmentDateText>
+                  </S.AppointmentDateContainer>
 
-                  <AppointmentHourContainer>
-                    <AppointmentHourText>13:00</AppointmentHourText>
-                  </AppointmentHourContainer>
-                </AppointmentInfo>
-              </AppointmentItem>
+                  <S.AppointmentHourContainer>
+                    <S.AppointmentHourText>13:00</S.AppointmentHourText>
+                  </S.AppointmentHourContainer>
+                </S.AppointmentInfo>
+              </S.AppointmentItem>
             ))}
           </>
         )}
-      </ScrollViewContainer>
-    </Container>
+      </S.ScrollViewContainer>
+    </S.Container>
   );
 };
 

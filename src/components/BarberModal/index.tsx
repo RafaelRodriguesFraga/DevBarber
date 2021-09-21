@@ -1,38 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {User} from '../../models/user';
 import {Colors} from '../../shared/colors';
-import {
-  ModalContainer,
-  ModalBlackArea,
-  ModalBody,
-  DismissButton,
-  ModalItem,
-  UserAvatar,
-  UserInfo,
-  UserName,
-  ServiceInfo,
-  ServiceName,
-  ServicePrice,
-  FinishScheduleButton,
-  FinishScheduleButtonText,
-  DateInfo,
-  DateTitle,
-  DateTitleContainer,
-  NextDate,
-  PrevDate,
-  DateList,
-  DateItem,
-  DayOfTheWeek,
-  DayOfMonth,
-  TimeList,
-  TimeItem,
-  AvailableHour,
-} from './styles';
+import * as S from './styles';
 
-import {Images} from "../../shared/images";
-
+import {Images} from '../../shared/images';
 import {months, daysOftheWeek} from '../../shared/calendarConstants';
-
 import {useNavigation} from '@react-navigation/native';
 import {setAppointment} from '../../services/user.service';
 import {Appointment} from '../../models/appointment';
@@ -188,51 +160,51 @@ const BarberModal = ({
   };
 
   return (
-    <ModalContainer transparent visible={show} animationType="slide">
-      <ModalBlackArea>
-        <ModalBody>
-          <DismissButton onPress={handleDismiss}>
+    <S.ModalContainer transparent visible={show} animationType="slide">
+      <S.ModalBlackArea>
+        <S.ModalBody>
+          <S.DismissButton onPress={handleDismiss}>
             <Images.ExpandIcon width="40" height="40" fill={Colors.black} />
-          </DismissButton>
+          </S.DismissButton>
 
-          <ModalItem>
-            <UserInfo>
-              <UserAvatar source={{uri: user.avatar}} />
-              <UserName>{user.name}</UserName>
-            </UserInfo>
-          </ModalItem>
+          <S.ModalItem>
+            <S.UserInfo>
+              <S.UserAvatar source={{uri: user.avatar}} />
+              <S.UserName>{user.name}</S.UserName>
+            </S.UserInfo>
+          </S.ModalItem>
 
-          <ModalItem>
+          <S.ModalItem>
             {user.services && (
-              <ServiceInfo>
-                <ServiceName>{user.services[service].name}</ServiceName>
-                <ServicePrice>
+              <S.ServiceInfo>
+                <S.ServiceName>{user.services[service].name}</S.ServiceName>
+                <S.ServicePrice>
                   R$ {user.services[service].price.toFixed(2)}
-                </ServicePrice>
-              </ServiceInfo>
+                </S.ServicePrice>
+              </S.ServiceInfo>
             )}
-          </ModalItem>
+          </S.ModalItem>
 
-          <ModalItem>
-            <DateInfo>
-              <PrevDate activeOpacity={0.7} onPress={handlePrevDate}>
+          <S.ModalItem>
+            <S.DateInfo>
+              <S.PrevDate activeOpacity={0.7} onPress={handlePrevDate}>
                 <Images.PrevIcon width="35" height="35" fill={Colors.black} />
-              </PrevDate>
+              </S.PrevDate>
 
-              <DateTitleContainer>
-                <DateTitle>
+              <S.DateTitleContainer>
+                <S.DateTitle>
                   {months[selectedMonth]} {selectedYear}
-                </DateTitle>
-              </DateTitleContainer>
+                </S.DateTitle>
+              </S.DateTitleContainer>
 
-              <NextDate activeOpacity={0.7} onPress={handleNextDate}>
+              <S.NextDate activeOpacity={0.7} onPress={handleNextDate}>
                 <Images.NextIcon width="35" height="35" fill={Colors.black} />
-              </NextDate>
-            </DateInfo>
+              </S.NextDate>
+            </S.DateInfo>
 
-            <DateList horizontal showsHorizontalScrollIndicator={false}>
+            <S.DateList horizontal showsHorizontalScrollIndicator={false}>
               {days.map((day, key) => (
-                <DateItem
+                <S.DateItem
                   activeOpacity={0.5}
                   key={key}
                   onPress={() =>
@@ -245,7 +217,7 @@ const BarberModal = ({
                         ? `${Colors.blue1}`
                         : `${Colors.white}`,
                   }}>
-                  <DayOfTheWeek
+                  <S.DayOfTheWeek
                     style={{
                       color:
                         day.dayOfMonth === selectedDay
@@ -253,8 +225,8 @@ const BarberModal = ({
                           : `${Colors.black}`,
                     }}>
                     {day.daysOfTheWeek}
-                  </DayOfTheWeek>
-                  <DayOfMonth
+                  </S.DayOfTheWeek>
+                  <S.DayOfMonth
                     style={{
                       color:
                         day.dayOfMonth === selectedDay
@@ -262,17 +234,17 @@ const BarberModal = ({
                           : `${Colors.black}`,
                     }}>
                     {day.dayOfMonth}
-                  </DayOfMonth>
-                </DateItem>
+                  </S.DayOfMonth>
+                </S.DateItem>
               ))}
-            </DateList>
-          </ModalItem>
+            </S.DateList>
+          </S.ModalItem>
 
           {selectedDay > 0 && hours.length > 0 && (
-            <ModalItem>
-              <TimeList horizontal showsHorizontalScrollIndicator={false}>
+            <S.ModalItem>
+              <S.TimeList horizontal showsHorizontalScrollIndicator={false}>
                 {hours.map((hour, key) => (
-                  <TimeItem
+                  <S.TimeItem
                     key={key}
                     onPress={() => setSelectedHour(hour)}
                     style={{
@@ -281,7 +253,7 @@ const BarberModal = ({
                           ? `${Colors.blue1}`
                           : `${Colors.white}`,
                     }}>
-                    <AvailableHour
+                    <S.AvailableHour
                       style={{
                         color:
                           hour === selectedHour
@@ -289,23 +261,23 @@ const BarberModal = ({
                             : `${Colors.black}`,
                       }}>
                       {hour}
-                    </AvailableHour>
-                  </TimeItem>
+                    </S.AvailableHour>
+                  </S.TimeItem>
                 ))}
-              </TimeList>
-            </ModalItem>
+              </S.TimeList>
+            </S.ModalItem>
           )}
 
-          <FinishScheduleButton
+          <S.FinishScheduleButton
             activeOpacity={0.7}
             onPress={handleFinishSchedule}>
-            <FinishScheduleButtonText>
+            <S.FinishScheduleButtonText>
               Finalizar Agendamento
-            </FinishScheduleButtonText>
-          </FinishScheduleButton>
-        </ModalBody>
-      </ModalBlackArea>
-    </ModalContainer>
+            </S.FinishScheduleButtonText>
+          </S.FinishScheduleButton>
+        </S.ModalBody>
+      </S.ModalBlackArea>
+    </S.ModalContainer>
   );
 };
 

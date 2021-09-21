@@ -1,14 +1,8 @@
 import React from 'react';
 import {RefreshControl} from 'react-native';
 import {Colors} from '../../shared/colors';
-import {
-  Container,
-  BackButton,
-  HeaderContainer,
-  HeaderText,
-  ScrollViewContainer,
-  LoadingIcon,
-} from './style';
+import * as S from './styles';
+
 import {Images} from "../../shared/images";
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
@@ -56,20 +50,20 @@ const Favorites = () => {
   };
 
   return (
-    <Container>
-      <HeaderContainer>
-        <BackButton onPress={handleBackButton}>
+    <S.Container>
+      <S.HeaderContainer>
+        <S.BackButton onPress={handleBackButton}>
           <Images.BackIcon width="44" height="44" fill={Colors.white} />
-        </BackButton>
+        </S.BackButton>
 
-        <HeaderText>Favoritos</HeaderText>
-      </HeaderContainer>
+        <S.HeaderText>Favoritos</S.HeaderText>
+      </S.HeaderContainer>
 
-      <ScrollViewContainer
+      <S.ScrollViewContainer
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        {loading && <LoadingIcon color="#fff" size="large" />}
+        {loading && <S.LoadingIcon color="#fff" size="large" />}
         {!loading && (
           <>
             {barberList.map((barber: BarberProps) => (
@@ -77,8 +71,8 @@ const Favorites = () => {
             ))}
           </>
         )}
-      </ScrollViewContainer>
-    </Container>
+      </S.ScrollViewContainer>
+    </S.Container>
   );
 };
 

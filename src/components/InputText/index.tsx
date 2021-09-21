@@ -2,7 +2,7 @@ import React from 'react';
 import {
   KeyboardTypeOptions,
 } from 'react-native';
-import {Input, InputContainer} from './styles';
+import * as S from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 type AutoCapitalizeOptions =
@@ -43,9 +43,9 @@ export const InputText = ({
   onChangeText,
 }: InputTextProps) => {
   return (
-    <InputContainer>
+    <S.InputContainer>
       <Icon name={icon} size={iconSize} color={iconColor} />
-      <Input
+      <S.Input
         placeholder={placeholder}
         placeholderTextColor={placeholderTextColor}
         selectionColor={selectionColor}
@@ -56,6 +56,6 @@ export const InputText = ({
         autoFocus={autoFocus}
         secureTextEntry={secureTextEntry}
       />
-    </InputContainer>
+    </S.InputContainer>
   );
 };

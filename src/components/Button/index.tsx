@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button, ButtonText} from './styles';
-
+import * as S from './styles';
 interface InputButtonProps { 
   buttonText: string,
   activeOpacity?: number;
@@ -12,8 +11,8 @@ export const InputButton = ({
   onPress
 }: InputButtonProps) => {
   return (      
-      <Button activeOpacity={activeOpacity} onPress={onPress}>
-        <ButtonText>{buttonText}</ButtonText>
-      </Button>   
+      <S.Button activeOpacity={activeOpacity} onPress={onPress}>
+        <S.ButtonText>{buttonText}</S.ButtonText>
+      </S.Button>   
   );
 };

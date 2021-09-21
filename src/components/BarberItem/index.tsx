@@ -2,15 +2,8 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {BarberProps} from '../../models/props/barberProps';
 import Stars from '../Stars';
+import * as S from './styles';
 
-import {
-  ButtonContainer,
-  Avatar,
-  UserInfoContainer,
-  Username,
-  ProfileButton,
-  ProfileButtonText,
-} from './styles';
 
 type BarberItemProps = {
   user: BarberProps;
@@ -31,19 +24,19 @@ const BarberItem = ({user}: BarberItemProps) => {
   };
 
   return (
-    <ButtonContainer activeOpacity={0.7} onPress={handleNavigateToProfile}>
-      <Avatar source={{uri: user.avatar}} />
+    <S.ButtonContainer activeOpacity={0.7} onPress={handleNavigateToProfile}>
+      <S.Avatar source={{uri: user.avatar}} />
 
-      <UserInfoContainer>
-        <Username>{user.name}</Username>
+      <S.UserInfoContainer>
+        <S.Username>{user.name}</S.Username>
 
         <Stars rating={user.stars} showRatingNumber />
 
-        <ProfileButton activeOpacity={0.7} onPress={handleNavigateToProfile}>
-          <ProfileButtonText>Ver Perfil</ProfileButtonText>
-        </ProfileButton>
-      </UserInfoContainer>
-    </ButtonContainer>
+        <S.ProfileButton activeOpacity={0.7} onPress={handleNavigateToProfile}>
+          <S.ProfileButtonText>Ver Perfil</S.ProfileButtonText>
+        </S.ProfileButton>
+      </S.UserInfoContainer>
+    </S.ButtonContainer>
   );
 };
 

@@ -2,13 +2,8 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {logout} from '../../services/auth.service';
-import {
-  BackButton,
-  Container,
-  HeaderContainer,
-  HeaderText,
-  SettingsItemContainer,
-} from './style';
+import * as S from "./styles";
+
 import {Images} from "../../shared/images";
 import SettingsItem from '../../components/SettingsItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -45,16 +40,16 @@ const Settings = () => {
   };
 
   return (
-    <Container>
-      <HeaderContainer>
-        <BackButton onPress={handleBackButton}>
+    <S.Container>
+      <S.HeaderContainer>
+        <S.BackButton onPress={handleBackButton}>
           <Images.BackIcon width="44" height="44" fill={Colors.white} />
-        </BackButton>
+        </S.BackButton>
 
-        <HeaderText>Configurações</HeaderText>
-      </HeaderContainer>
+        <S.HeaderText>Configurações</S.HeaderText>
+      </S.HeaderContainer>
 
-      <SettingsItemContainer>
+      <S.SettingsItemContainer>
         <SettingsItem title="Usuário" subtitle={storagedName.replace(/"/g,"")} disabled />
         <SettingsItem title="Email" subtitle={storagedEmail.replace(/"/g,"")} disabled />
         <SettingsItem title="Tema" subtitle="Tema do App" onPress={() => {}} />
@@ -63,9 +58,9 @@ const Settings = () => {
           subtitle="Sair do App"
           onPress={handleLogout}
         />
-      </SettingsItemContainer>
+      </S.SettingsItemContainer>
 
-    </Container>
+    </S.Container>
   );
 };
 

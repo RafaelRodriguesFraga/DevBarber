@@ -1,17 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Images} from "../../shared/images";
-import {
-  Container,
-  ScrollViewContainer,
-  HeaderContainer,
-  Title,
-  SearchButton,
-  LocationContainer,
-  LocationInput,
-  LocationButton,
-  LoadingIcon,
-  BarberListContainer,
-} from './style';
+import * as S from './styles';
+
 import {useNavigation} from '@react-navigation/native';
 import {Platform, RefreshControl} from 'react-native';
 import {PERMISSIONS, request} from 'react-native-permissions';
@@ -122,40 +112,40 @@ const Home = () => {
   };
 
   return (
-    <Container>
-      <ScrollViewContainer
+    <S.Container>
+      <S.ScrollViewContainer
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        <HeaderContainer>
-          <Title>Encontre o seu barbeiro favorito</Title>
-          <SearchButton onPress={handleNavigateToSearch}>
+        <S.HeaderContainer>
+          <S.Title>Encontre o seu barbeiro favorito</S.Title>
+          <S.SearchButton onPress={handleNavigateToSearch}>
             <Images.SearchIcon width="26" height="26" fill="#FFF" />
-          </SearchButton>
-        </HeaderContainer>
+          </S.SearchButton>
+        </S.HeaderContainer>
 
-        <LocationContainer>
-          <LocationInput
+        <S.LocationContainer>
+          <S.LocationInput
             placeholder="Onde você está?"
             placeholderTextColor="#FFF"
             value={locationText}
             onChangeText={locationText => setLocationlocationText(locationText)}
             onEndEditing={handleLocationSearch}
           />
-          <LocationButton onPress={handleLocation}>
+          <S.LocationButton onPress={handleLocation}>
             <Images.LocationIcon width="24" height="24" fill={Colors.white} />
-          </LocationButton>
-        </LocationContainer>
+          </S.LocationButton>
+        </S.LocationContainer>
 
-        {loading && <LoadingIcon size="large" color={Colors.white} />}
+        {loading && <S.LoadingIcon size="large" color={Colors.white} />}
 
-        <BarberListContainer>
+        <S.BarberListContainer>
           {barberList.map((baberProps: BarberProps) => {
             return <BarberItem key={baberProps.id} user={baberProps} />;
           })}
-        </BarberListContainer>
-      </ScrollViewContainer>
-    </Container>
+        </S.BarberListContainer>
+      </S.ScrollViewContainer>
+    </S.Container>
   );
 };
 

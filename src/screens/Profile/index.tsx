@@ -2,42 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {User} from '../../models/user';
 import {getBarberProfile} from '../../services/barber.service';
-import {
-  Container,
-  BackButton,
-  ScrollViewContainer,
-  SwipeDot,
-  SwipeDotActive,
-  SwipeItem,
-  SwipeImage,
-  FakeSwiper,
-  PageContainer,
-  UserInfoContainer,
-  UserAvatar,
-  UserInfo,
-  Name,
-  FavoriteButton,
-  LoadingIcon,
-  ServiceContainer,
-  Title,
-  ServiceItem,
-  ServiceInfo,
-  ServiceName,
-  ServicePrice,
-  ScheduleBarberButton,
-  ScheduleBarberButtonText,
-  TestimonialsContainer,
-  TestimonialItem,
-  TestmonialInfo,
-  TestimonialName,
-  TestimonialBody,
-} from './style';
+
+import * as S from './styles';
+
 import Swiper from 'react-native-swiper';
 import Stars from '../../components/Stars';
 import {Colors} from '../../shared/colors';
-import {Images} from "../../shared/images";
+import {Images} from '../../shared/images';
 import BarberModal from '../../components/BarberModal';
-import { setFavorite } from '../../services/user.service';
+import {setFavorite} from '../../services/user.service';
 
 type RouteParams = {
   id: number;
@@ -99,17 +72,17 @@ const Profile = () => {
   };
 
   return (
-    <Container>
-      <BackButton onPress={handleBackButton}>
+    <S.Container>
+      <S.BackButton onPress={handleBackButton}>
         <Images.BackIcon width="44" height="44" fill={Colors.white} />
-      </BackButton>
+      </S.BackButton>
 
-      <ScrollViewContainer>
+      <S.ScrollViewContainer>
         {userData.photos && userData.photos.length > 0 ? (
           <Swiper
             height={240}
-            dot={<SwipeDot />}
-            activeDot={<SwipeDotActive />}
+            dot={<S.SwipeDot />}
+            activeDot={<S.SwipeDotActive />}
             paginationStyle={{
               top: 15,
               right: 15,
@@ -118,57 +91,61 @@ const Profile = () => {
             }}
             autoplay>
             {userData.photos.map((photos, key) => (
-              <SwipeItem key={key}>
-                <SwipeImage source={{uri: photos.url}} />
-              </SwipeItem>
+              <S.SwipeItem key={key}>
+                <S.SwipeImage source={{uri: photos.url}} />
+              </S.SwipeItem>
             ))}
           </Swiper>
         ) : (
-          <FakeSwiper />
+          <S.FakeSwiper />
         )}
 
-        <PageContainer>
-          <UserInfoContainer>
-            <UserAvatar source={{uri: routeParams.avatar}} />
-            <UserInfo>
-              <Name>{routeParams.name}</Name>
+        <S.PageContainer>
+          <S.UserInfoContainer>
+            <S.UserAvatar source={{uri: routeParams.avatar}} />
+            <S.UserInfo>
+              <S.Name>{routeParams.name}</S.Name>
               <Stars rating={routeParams.stars} showRatingNumber />
-            </UserInfo>
+            </S.UserInfo>
 
-            <FavoriteButton onPress={handleFavorite} activeOpacity={0.7}>
+            <S.FavoriteButton onPress={handleFavorite} activeOpacity={0.7}>
               {favorited ? (
-                <Images.FavoriteFullIcon width="24" height="24" fill={Colors.red} />
+                <Images.FavoriteFullIcon
+                  width="24"
+                  height="24"
+                  fill={Colors.red}
+                />
               ) : (
                 <Images.FavoriteIcon width="24" height="24" fill={Colors.red} />
               )}
-            </FavoriteButton>
-          </UserInfoContainer>
+            </S.FavoriteButton>
+          </S.UserInfoContainer>
 
-          {loading && <LoadingIcon size="large" color={Colors.black} />}
+          {loading && <S.LoadingIcon size="large" color={Colors.black} />}
 
           {userData.services && (
-            <ServiceContainer>
-              <Title>Lista de Serviços</Title>
+            <S.ServiceContainer>
+              <S.Title>Lista de Serviços</S.Title>
 
               {userData.services.map((service, key) => (
-                <ServiceItem key={key}>
-                  <ServiceInfo>
-                    <ServiceName>{service.name}</ServiceName>
-                    <ServicePrice>R$ {service.price}</ServicePrice>
-                 </ServiceInfo>
+                <S.ServiceItem key={key}>
+                  <S.ServiceInfo>
+                    <S.ServiceName>{service.name}</S.ServiceName>
+                    <S.ServicePrice>R$ {service.price}</S.ServicePrice>
+                  </S.ServiceInfo>
 
-                  <ScheduleBarberButton
+                  <S.ScheduleBarberButton
                     activeOpacity={0.7}
                     onPress={() => handleSchedule(key)}>
-                    <ScheduleBarberButtonText>Agendar</ScheduleBarberButtonText>
-                  </ScheduleBarberButton>
-                </ServiceItem>
+                    <S.ScheduleBarberButtonText>Agendar</S.ScheduleBarberButtonText>
+                  </S.ScheduleBarberButton>
+                </S.ServiceItem>
               ))}
-            </ServiceContainer>
+            </S.ServiceContainer>
           )}
 
           {userData.testimonials && userData.testimonials.length > 0 && (
-            <TestimonialsContainer>
+            <S.TestimonialsContainer>
               <Swiper
                 style={{height: 110}}
                 showsPagination={false}
@@ -180,19 +157,19 @@ const Profile = () => {
                   <Images.NextIcon width="35" height="35" fill={Colors.black} />
                 }>
                 {userData.testimonials.map((testimonial, key) => (
-                  <TestimonialItem key={key}>
-                    <TestmonialInfo>
-                      <TestimonialName>{testimonial.name}</TestimonialName>
+                  <S.TestimonialItem key={key}>
+                    <S.TestmonialInfo>
+                      <S.TestimonialName>{testimonial.name}</S.TestimonialName>
                       <Stars rating={testimonial.rate} />
-                    </TestmonialInfo>
-                    <TestimonialBody>{testimonial.body}</TestimonialBody>
-                  </TestimonialItem>
+                    </S.TestmonialInfo>
+                    <S.TestimonialBody>{testimonial.body}</S.TestimonialBody>
+                  </S.TestimonialItem>
                 ))}
               </Swiper>
-            </TestimonialsContainer>
+            </S.TestimonialsContainer>
           )}
-        </PageContainer>
-      </ScrollViewContainer>
+        </S.PageContainer>
+      </S.ScrollViewContainer>
 
       <BarberModal
         show={showModal}
@@ -200,7 +177,7 @@ const Profile = () => {
         user={userData}
         service={selectedService}
       />
-    </Container>
+    </S.Container>
   );
 };
 
