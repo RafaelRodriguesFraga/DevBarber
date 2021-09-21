@@ -3,13 +3,14 @@ import {RefreshControl} from 'react-native';
 import {Colors} from '../../shared/colors';
 import * as S from './styles';
 
-import {Images} from "../../shared/images";
+import {Images} from '../../shared/images';
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {BarberProps} from '../../models/props/barberProps';
 import {getBarbers} from '../../services/barber.service';
 import BarberItem from '../../components/BarberItem';
+import BackButton from '../../components/BackButton';
 
 const Favorites = () => {
   const navigation = useNavigation();
@@ -52,9 +53,7 @@ const Favorites = () => {
   return (
     <S.Container>
       <S.HeaderContainer>
-        <S.BackButton onPress={handleBackButton}>
-          <Images.BackIcon width="44" height="44" fill={Colors.white} />
-        </S.BackButton>
+        <BackButton activeOpacity={0.5} onPress={handleBackButton} />
 
         <S.HeaderText>Favoritos</S.HeaderText>
       </S.HeaderContainer>

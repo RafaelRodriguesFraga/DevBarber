@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {RefreshControl} from 'react-native';
 import * as S from './styles';
 
-import {Images} from '../../shared/images';
 import {Colors} from '../../shared/colors';
 import {useNavigation} from '@react-navigation/native';
 import {BarberProps} from '../../models/props/barberProps';
 import {getBarbers} from '../../services/barber.service';
 import BarberItem from '../../components/BarberItem';
+import BackButton from '../../components/BackButton';
 
 const Search = () => {
   const navigation = useNavigation();
@@ -65,9 +65,7 @@ const Search = () => {
   return (
     <S.Container>
       <S.HeaderContainer>
-        <S.BackButton onPress={handleBackButton}>
-          <Images.BackIcon width="44" height="44" fill={Colors.white} />
-        </S.BackButton>
+        <BackButton activeOpacity={0.5} onPress={handleBackButton} />
 
         <S.InputSearch
           placeholder="Digite o nome do barbeiro"

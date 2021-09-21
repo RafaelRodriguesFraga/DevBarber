@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {RefreshControl} from 'react-native';
 import * as S from './styles';
-
-import {Images} from '../../shared/images';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import {BarberProps} from '../../models/props/barberProps';
 import {getBarbers} from '../../services/barber.service';
+import BackButton from '../../components/BackButton';
 
 const Appointments = () => {
   const navigation = useNavigation();
@@ -48,9 +46,7 @@ const Appointments = () => {
   return (
     <S.Container>
       <S.HeaderContainer>
-        <S.BackButton onPress={handleBackButton}>
-          <Images.BackIcon width="44" height="44" fill={Colors.white} />
-        </S.BackButton>
+        <BackButton activeOpacity={0.5} onPress={handleBackButton} />
 
         <S.HeaderText>Agendamentos</S.HeaderText>
       </S.HeaderContainer>

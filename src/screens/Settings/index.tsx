@@ -2,16 +2,17 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {logout} from '../../services/auth.service';
-import * as S from "./styles";
+import * as S from './styles';
 
-import {Images} from "../../shared/images";
+import {Images} from '../../shared/images';
 import SettingsItem from '../../components/SettingsItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import BackButton from '../../components/BackButton';
 
 const Settings = () => {
   const navigation = useNavigation();
   const [storagedEmail, setStoragedEmail] = useState<string>('');
-  const [storagedName, setStoragedName] = useState("");
+  const [storagedName, setStoragedName] = useState('');
 
   const getUserProperties = async () => {
     const email = await AsyncStorage.getItem('email');
@@ -32,7 +33,6 @@ const Settings = () => {
     navigation.reset({
       routes: [{name: 'Login'}],
     });
-
   };
 
   const handleBackButton = () => {
@@ -42,16 +42,22 @@ const Settings = () => {
   return (
     <S.Container>
       <S.HeaderContainer>
-        <S.BackButton onPress={handleBackButton}>
-          <Images.BackIcon width="44" height="44" fill={Colors.white} />
-        </S.BackButton>
+        <BackButton activeOpacity={0.5} onPress={handleBackButton} />
 
         <S.HeaderText>Configurações</S.HeaderText>
       </S.HeaderContainer>
 
       <S.SettingsItemContainer>
-        <SettingsItem title="Usuário" subtitle={storagedName.replace(/"/g,"")} disabled />
-        <SettingsItem title="Email" subtitle={storagedEmail.replace(/"/g,"")} disabled />
+        <SettingsItem
+          title="Usuário"
+          subtitle={storagedName.replace(/"/g, '')}
+          disabled
+        />
+        <SettingsItem
+          title="Email"
+          subtitle={storagedEmail.replace(/"/g, '')}
+          disabled
+        />
         <SettingsItem title="Tema" subtitle="Tema do App" onPress={() => {}} />
         <SettingsItem
           title="Sair"
@@ -59,7 +65,6 @@ const Settings = () => {
           onPress={handleLogout}
         />
       </S.SettingsItemContainer>
-
     </S.Container>
   );
 };
