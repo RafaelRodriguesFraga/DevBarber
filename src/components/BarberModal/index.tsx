@@ -29,9 +29,7 @@ import {
   AvailableHour,
 } from './styles';
 
-import ExpandIcon from '../../assets/expand.svg';
-import PrevIcon from '../../assets/nav_prev.svg';
-import NextIcon from '../../assets/nav_next.svg';
+import {Images} from "../../shared/images";
 
 import {months, daysOftheWeek} from '../../shared/calendarConstants';
 
@@ -194,7 +192,7 @@ const BarberModal = ({
       <ModalBlackArea>
         <ModalBody>
           <DismissButton onPress={handleDismiss}>
-            <ExpandIcon width="40" height="40" fill={Colors.black} />
+            <Images.ExpandIcon width="40" height="40" fill={Colors.black} />
           </DismissButton>
 
           <ModalItem>
@@ -218,7 +216,7 @@ const BarberModal = ({
           <ModalItem>
             <DateInfo>
               <PrevDate activeOpacity={0.7} onPress={handlePrevDate}>
-                <PrevIcon width="35" height="35" fill={Colors.black} />
+                <Images.PrevIcon width="35" height="35" fill={Colors.black} />
               </PrevDate>
 
               <DateTitleContainer>
@@ -228,7 +226,7 @@ const BarberModal = ({
               </DateTitleContainer>
 
               <NextDate activeOpacity={0.7} onPress={handleNextDate}>
-                <NextIcon width="35" height="35" fill={Colors.black} />
+                <Images.NextIcon width="35" height="35" fill={Colors.black} />
               </NextDate>
             </DateInfo>
 

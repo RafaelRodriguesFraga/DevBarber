@@ -1,6 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Button, Text, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {logout} from '../../services/auth.service';
 import {
@@ -10,7 +9,7 @@ import {
   HeaderText,
   SettingsItemContainer,
 } from './style';
-import BackIcon from '../../assets/back.svg';
+import {Images} from "../../shared/images";
 import SettingsItem from '../../components/SettingsItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -49,7 +48,7 @@ const Settings = () => {
     <Container>
       <HeaderContainer>
         <BackButton onPress={handleBackButton}>
-          <BackIcon width="44" height="44" fill={Colors.white} />
+          <Images.BackIcon width="44" height="44" fill={Colors.white} />
         </BackButton>
 
         <HeaderText>Configurações</HeaderText>

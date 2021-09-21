@@ -20,13 +20,11 @@ import {
   AppointmentHourContainer,
   LoadingIcon,
 } from './style';
-import BackIcon from '../../assets/back.svg';
+import {Images} from "../../shared/images";
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import {BarberProps} from '../../models/props/barberProps';
-import {User} from '../../models/user';
 import {getBarbers} from '../../services/barber.service';
-import {Alert} from 'react-native';
 import {useEffect} from 'react';
 
 const Appointments = () => {
@@ -70,7 +68,7 @@ const Appointments = () => {
     <Container>
       <HeaderContainer>
         <BackButton onPress={handleBackButton}>
-          <BackIcon width="44" height="44" fill={Colors.white} />
+          <Images.BackIcon width="44" height="44" fill={Colors.white} />
         </BackButton>
 
         <HeaderText>Agendamentos</HeaderText>

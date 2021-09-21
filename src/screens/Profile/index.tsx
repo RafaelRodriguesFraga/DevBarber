@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {logout} from '../../services/auth.service';
 import {User} from '../../models/user';
 import {getBarberProfile} from '../../services/barber.service';
 import {
@@ -36,12 +35,7 @@ import {
 import Swiper from 'react-native-swiper';
 import Stars from '../../components/Stars';
 import {Colors} from '../../shared/colors';
-
-import FavoriteIcon from '../../assets/favorite.svg';
-import FavoriteFullIcon from '../../assets/favorite_full.svg';
-import BackIcon from '../../assets/back.svg';
-import PrevIcon from '../../assets/nav_prev.svg';
-import NextIcon from '../../assets/nav_next.svg';
+import {Images} from "../../shared/images";
 import BarberModal from '../../components/BarberModal';
 import { setFavorite } from '../../services/user.service';
 
@@ -107,7 +101,7 @@ const Profile = () => {
   return (
     <Container>
       <BackButton onPress={handleBackButton}>
-        <BackIcon width="44" height="44" fill={Colors.white} />
+        <Images.BackIcon width="44" height="44" fill={Colors.white} />
       </BackButton>
 
       <ScrollViewContainer>
@@ -143,9 +137,9 @@ const Profile = () => {
 
             <FavoriteButton onPress={handleFavorite} activeOpacity={0.7}>
               {favorited ? (
-                <FavoriteFullIcon width="24" height="24" fill={Colors.red} />
+                <Images.FavoriteFullIcon width="24" height="24" fill={Colors.red} />
               ) : (
-                <FavoriteIcon width="24" height="24" fill={Colors.red} />
+                <Images.FavoriteIcon width="24" height="24" fill={Colors.red} />
               )}
             </FavoriteButton>
           </UserInfoContainer>
@@ -180,10 +174,10 @@ const Profile = () => {
                 showsPagination={false}
                 showsButtons
                 prevButton={
-                  <PrevIcon width="35" height="35" fill={Colors.black} />
+                  <Images.PrevIcon width="35" height="35" fill={Colors.black} />
                 }
                 nextButton={
-                  <NextIcon width="35" height="35" fill={Colors.black} />
+                  <Images.NextIcon width="35" height="35" fill={Colors.black} />
                 }>
                 {userData.testimonials.map((testimonial, key) => (
                   <TestimonialItem key={key}>

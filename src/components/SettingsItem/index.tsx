@@ -1,5 +1,5 @@
 import React from 'react';
-import {NativeTouchEvent, NativeSyntheticEvent, GestureResponderEvent} from 'react-native';
+import {GestureResponderEvent} from 'react-native';
 import {
   ScrollViewContainer,
   SettingsInfo,

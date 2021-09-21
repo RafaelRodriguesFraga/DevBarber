@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import SearchIcon from '../../assets/search.svg';
-import LocationIcon from '../../assets/my_location.svg';
+import {Images} from "../../shared/images";
 import {
   Container,
   ScrollViewContainer,
@@ -21,7 +20,6 @@ import Geolocation, {
 } from '@react-native-community/geolocation';
 import {getBarbers} from '../../services/barber.service';
 import BarberItem from '../../components/BarberItem';
-import {User} from '../../models/user';
 import {Colors} from '../../shared/colors';
 import {Location} from '../../models/location';
 import {BarberProps} from '../../models/props/barberProps';
@@ -132,7 +130,7 @@ const Home = () => {
         <HeaderContainer>
           <Title>Encontre o seu barbeiro favorito</Title>
           <SearchButton onPress={handleNavigateToSearch}>
-            <SearchIcon width="26" height="26" fill="#FFF" />
+            <Images.SearchIcon width="26" height="26" fill="#FFF" />
           </SearchButton>
         </HeaderContainer>
 
@@ -145,7 +143,7 @@ const Home = () => {
             onEndEditing={handleLocationSearch}
           />
           <LocationButton onPress={handleLocation}>
-            <LocationIcon width="24" height="24" fill={Colors.white} />
+            <Images.LocationIcon width="24" height="24" fill={Colors.white} />
           </LocationButton>
         </LocationContainer>
 

@@ -1,8 +1,6 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {
   KeyboardTypeOptions,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
 } from 'react-native';
 import {Input, InputContainer} from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';

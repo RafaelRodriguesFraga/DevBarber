@@ -7,7 +7,7 @@ import {
   SignInMessageButtonTextBold,
 } from './styles';
 
-import BarberLogo from '../../assets/barber.svg';
+import {Images} from "../../shared/images";
 import {InputText} from '../../components/InputText';
 import {InputButton} from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -63,7 +63,7 @@ const Login = () => {
 
   return (
     <Container>
-      <BarberLogo width="100%" height="120" />
+      <Images.BarberLogo width="100%" height="120" />
 
       <InputContainer>
         <InputText

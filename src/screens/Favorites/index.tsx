@@ -1,5 +1,5 @@
 import React from 'react';
-import {RefreshControl, Text, View} from 'react-native';
+import {RefreshControl} from 'react-native';
 import {Colors} from '../../shared/colors';
 import {
   Container,
@@ -9,7 +9,7 @@ import {
   ScrollViewContainer,
   LoadingIcon,
 } from './style';
-import BackIcon from '../../assets/back.svg';
+import {Images} from "../../shared/images";
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {useEffect} from 'react';
@@ -59,7 +59,7 @@ const Favorites = () => {
     <Container>
       <HeaderContainer>
         <BackButton onPress={handleBackButton}>
-          <BackIcon width="44" height="44" fill={Colors.white} />
+          <Images.BackIcon width="44" height="44" fill={Colors.white} />
         </BackButton>
 
         <HeaderText>Favoritos</HeaderText>

@@ -8,7 +8,7 @@ import {
   HeaderContainer,
   LoadingIcon,
 } from './style';
-import BackIcon from '../../assets/back.svg';
+import {Images} from "../../shared/images";
 import {Colors} from '../../shared/colors';
 import {useNavigation} from '@react-navigation/native';
 import {BarberProps} from '../../models/props/barberProps';
@@ -72,7 +72,7 @@ const Search = () => {
     <Container>
       <HeaderContainer>
         <BackButton onPress={handleBackButton}>
-          <BackIcon width="44" height="44" fill={Colors.white} />
+          <Images.BackIcon width="44" height="44" fill={Colors.white} />
         </BackButton>
 
         <InputSearch
