@@ -1,4 +1,4 @@
-import {Colors} from './../../shared/colors';
+import {Colors} from '../../shared/colors';
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
