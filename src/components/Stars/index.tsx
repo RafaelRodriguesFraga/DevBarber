@@ -1,8 +1,7 @@
 import React from 'react';
-import {Container, RatingText, StarView} from './style';
-import FullStar from '../../assets/star.svg';
-import HalfStar from '../../assets/star_half.svg';
-import EmptyStar from '../../assets/star_empty.svg';
+import * as S from './styles';
+import {Images} from "../../shared/images";
+
 
 type StarProps = {
   rating: number;
@@ -43,19 +42,19 @@ const Stars = ({rating, showRatingNumber}: StarProps) => {
   }
 
   return (
-    <Container>
+    <S.Container>
       {stars.map((index, key) => {
         return (
-          <StarView key={key}>
-            {index === 0 && <EmptyStar width="18" fill="#FF9200" />}
-            {index === 1 && <HalfStar width="18" fill="#FF9200" />}
-            {index === 2 && <FullStar width="18" fill="#FF9200" />}
-          </StarView>
+          <S.StarView key={key}>
+            {index === 0 && <Images.EmptyStar width="18" fill="#FF9200" />}
+            {index === 1 && <Images.HalfStar width="18" fill="#FF9200" />}
+            {index === 2 && <Images.FullStar width="18" fill="#FF9200" />}
+          </S.StarView>
         );
       })}
 
-      {showRatingNumber && <RatingText>{rating}</RatingText>}
-    </Container>
+      {showRatingNumber && <S.RatingText>{rating}</S.RatingText>}
+    </S.Container>
   );
 };
 

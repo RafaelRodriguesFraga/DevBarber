@@ -1,13 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, Alert} from 'react-native';
-import {
-  Container,
-  InputContainer,
-  SignUpMessageButton,
-  SignUpMessageButtonText,
-  SignUpMessageButtonTextBold,
-} from './styles';
-import BarberLogo from '../../assets/barber.svg';
+import * as S from "./styles";
+import {Images} from "../../shared/images";
 import {InputText} from '../../components/InputText';
 import {InputButton} from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -51,10 +44,10 @@ const Register = () => {
   };
 
   return (
-    <Container>
-      <BarberLogo width="100%" height="120" />
+    <S.Container>
+      <Images.BarberLogo width="100%" height="120" />
 
-      <InputContainer>
+      <S.InputContainer>
         <InputText
           icon="user"
           iconSize={22}
@@ -98,13 +91,13 @@ const Register = () => {
           activeOpacity={0.7}
           onPress={handleRegister}
         />
-      </InputContainer>
+      </S.InputContainer>
 
-      <SignUpMessageButton activeOpacity={0.5} onPress={handleNavigateToSignIn}>
-        <SignUpMessageButtonText>Já possui uma conta?</SignUpMessageButtonText>
-        <SignUpMessageButtonTextBold>Faça Login</SignUpMessageButtonTextBold>
-      </SignUpMessageButton>
-    </Container>
+      <S.SignUpMessageButton activeOpacity={0.5} onPress={handleNavigateToSignIn}>
+        <S.SignUpMessageButtonText>Já possui uma conta?</S.SignUpMessageButtonText>
+        <S.SignUpMessageButtonTextBold>Faça Login</S.SignUpMessageButtonTextBold>
+      </S.SignUpMessageButton>
+    </S.Container>
   );
 };
 

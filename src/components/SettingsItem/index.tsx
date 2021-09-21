@@ -1,12 +1,6 @@
 import React from 'react';
-import {NativeTouchEvent, NativeSyntheticEvent, GestureResponderEvent} from 'react-native';
-import {
-  ScrollViewContainer,
-  SettingsInfo,
-  SettingsTitle,
-  SettingsSubtitle,
-  SettingsButtonContainer,
-} from './style';
+import {GestureResponderEvent} from 'react-native';
+import * as S from './styles';
 
 type SettingsItemProps = {
   title: string;
@@ -17,14 +11,14 @@ type SettingsItemProps = {
 
 const SettingsItem = ({title, subtitle, disabled, onPress}: SettingsItemProps) => {
   return (
-    <ScrollViewContainer>
-      <SettingsButtonContainer onPress={onPress} activeOpacity={0.7} disabled={disabled}>
-        <SettingsInfo>
-          <SettingsTitle>{title}</SettingsTitle>
-          <SettingsSubtitle>{subtitle}</SettingsSubtitle>
-        </SettingsInfo>
-      </SettingsButtonContainer>
-    </ScrollViewContainer>
+    <S.ScrollViewContainer>
+      <S.SettingsButtonContainer onPress={onPress} activeOpacity={0.7} disabled={disabled}>
+        <S.SettingsInfo>
+          <S.SettingsTitle>{title}</S.SettingsTitle>
+          <S.SettingsSubtitle>{subtitle}</S.SettingsSubtitle>
+        </S.SettingsInfo>
+      </S.SettingsButtonContainer>
+    </S.ScrollViewContainer>
   );
 };
 

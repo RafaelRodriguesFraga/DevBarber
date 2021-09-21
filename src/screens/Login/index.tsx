@@ -1,13 +1,8 @@
 import React, {useContext, useState} from 'react';
-import {
-  Container,
-  InputContainer,
-  SignInMessageButton,
-  SignInMessageButtonText,
-  SignInMessageButtonTextBold,
-} from './styles';
+import * as S from './styles';
 
-import BarberLogo from '../../assets/barber.svg';
+
+import {Images} from "../../shared/images";
 import {InputText} from '../../components/InputText';
 import {InputButton} from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -62,10 +57,10 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <BarberLogo width="100%" height="120" />
+    <S.Container>
+      <Images.BarberLogo width="100%" height="120" />
 
-      <InputContainer>
+      <S.InputContainer>
         <InputText
           icon="envelope"
           iconSize={22}
@@ -97,15 +92,15 @@ const Login = () => {
           activeOpacity={0.7}
           onPress={handleAuthentication}
         />
-      </InputContainer>
+      </S.InputContainer>
 
-      <SignInMessageButton activeOpacity={0.5} onPress={handleNavigateToSignUp}>
-        <SignInMessageButtonText>
+      <S.SignInMessageButton activeOpacity={0.5} onPress={handleNavigateToSignUp}>
+        <S.SignInMessageButtonText>
           Ainda não possui uma conta?
-        </SignInMessageButtonText>
-        <SignInMessageButtonTextBold>Cadastre-se</SignInMessageButtonTextBold>
-      </SignInMessageButton>
-    </Container>
+        </S.SignInMessageButtonText>
+        <S.SignInMessageButtonTextBold>Cadastre-se</S.SignInMessageButtonTextBold>
+      </S.SignInMessageButton>
+    </S.Container>
   );
 };
 

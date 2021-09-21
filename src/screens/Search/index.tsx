@@ -1,14 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {RefreshControl} from 'react-native';
-import {
-  BackButton,
-  Container,
-  InputSearch,
-  ScrollViewContainer,
-  HeaderContainer,
-  LoadingIcon,
-} from './style';
-import BackIcon from '../../assets/back.svg';
+import * as S from './styles';
+
+import {Images} from '../../shared/images';
 import {Colors} from '../../shared/colors';
 import {useNavigation} from '@react-navigation/native';
 import {BarberProps} from '../../models/props/barberProps';
@@ -69,25 +63,25 @@ const Search = () => {
   };
 
   return (
-    <Container>
-      <HeaderContainer>
-        <BackButton onPress={handleBackButton}>
-          <BackIcon width="44" height="44" fill={Colors.white} />
-        </BackButton>
+    <S.Container>
+      <S.HeaderContainer>
+        <S.BackButton onPress={handleBackButton}>
+          <Images.BackIcon width="44" height="44" fill={Colors.white} />
+        </S.BackButton>
 
-        <InputSearch
+        <S.InputSearch
           placeholder="Digite o nome do barbeiro"
           placeholderTextColor={Colors.white}
           value={searchText}
           onChangeText={text => handleSearch(text)}
         />
-      </HeaderContainer>
+      </S.HeaderContainer>
 
-      <ScrollViewContainer
+      <S.ScrollViewContainer
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        {loading && <LoadingIcon size="large" color="#fff" />}
+        {loading && <S.LoadingIcon size="large" color="#fff" />}
         {!loading && filteredList.length > 0 && (
           <>
             {filteredList.map((barber, key) => (
@@ -95,8 +89,8 @@ const Search = () => {
             ))}
           </>
         )}
-      </ScrollViewContainer>
-    </Container>
+      </S.ScrollViewContainer>
+    </S.Container>
   );
 };
 
